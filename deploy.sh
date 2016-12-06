@@ -76,13 +76,16 @@ cd out
 
 # open gh-pages-staging, or create a new branch with no history
 git checkout $TARGET_BRANCH
-cd ..
 
-#clean out existing contents
-rm -rf out/**/* || exit 0
+# Clean out existing content
+git rm -r *
+
+cd ..
 
 # run our compile script
 doCompile
+
+# Copy build
 cp -R build/* out/
 echo "${SHA}" > out/VERSION
 echo '<!-- VERSION: '${SHA}' -->' >> out/index.html
