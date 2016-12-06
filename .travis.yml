@@ -13,7 +13,5 @@ env:
     - COMMIT_AUTHOR_EMAIL: "education4gcp@gmail.com"
     - ENCRYPTION_LABEL: "18ca7b75201b"
 
-before_script:
-  - ./lint.sh
 script: ./deploy.sh
 
