@@ -1,0 +1,17 @@
+{
+  "name": "gcpedu.github.io",
+  "homepage": "https://github.com/gcpedu/gcpedu.github.io",
+  "authors": [
+    "Colin Bookman <bookman@google.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
