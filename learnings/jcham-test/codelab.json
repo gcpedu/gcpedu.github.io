@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "source": "https://docs.google.com/document/d/10f7RgFE_mIeokkaQZO4h-Q2sHaXoeCwwAnTd67AF-BQ/edit?usp=sharing",
+  "format": "html",
+  "prefix": "../../",
+  "mainga": "UA-88560603-1",
+  "updated": "2016-12-06T18:03:33Z",
+  "id": "jcham-test",
+  "duration": 0,
+  "title": "JCham's Test",
+  "author": "bookman@google.com",
+  "summary": "Some test",
+  "theme": "gke",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "GKE"
+  ],
+  "tags": [
+    "gke"
+  ],
+  "feedback": "https://docs.google.com/document/d/10f7RgFE_mIeokkaQZO4h-Q2sHaXoeCwwAnTd67AF-BQ/edit?usp=sharing",
+  "url": "jcham-test"
+}
