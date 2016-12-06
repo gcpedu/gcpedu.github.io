@@ -1,6 +1,6 @@
 # GCP Education Learnings
 
-![Build Status](https://api.travis-ci.org/gcpedu/gcpedu.github.io.svg?branch=builder)
+[![Build Status](https://travis-ci.org/gcpedu/gcpedu.github.io.svg?branch=builder)](https://travis-ci.org/gcpedu/gcpedu.github.io)
 
 ## Adding a learning
 

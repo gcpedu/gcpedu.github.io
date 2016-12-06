@@ -1,9 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"github.com/tdewolff/minify"
 	"github.com/tdewolff/minify/html"
-	"encoding/json"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -18,14 +18,16 @@ var (
 	codelabFolder = "learnings/"
 )
 
+// Sources contains a collection of claat sources.
 type Sources struct {
 	GoogleDocs []string `json:"googleDocs"`
 }
 
+// Codelab contains metadata on a claat.
 type Codelab struct {
 	Environment string    `json:"environment"`
 	Updated     time.Time `json:"Updated"`
-	Id          string    `json:"id"`
+	ID          string    `json:"id"`
 	Duration    int64     `json:"duration"`
 	Title       string    `json:"title"`
 	Author      string    `json:"author"`
@@ -34,13 +36,14 @@ type Codelab struct {
 	Category    []string  `json:"category"` // should always be cloud
 	Tags        []string  `json:"tags"`     // should contain the key technology
 	Feedback    string    `json:"feedback"`
-	Url         string    `json:"url"`
+	URL         string    `json:"url"`
 }
 
+// TemplateVariables contain Configuration for rendering a template
 type TemplateVariables struct {
 	Technologies []string
 	Mappings     map[string][]*Codelab
-	Codelabs    []*Codelab
+	Codelabs     []*Codelab
 }
 
 func main() {
@@ -116,7 +119,7 @@ func buildLanding() error {
 
 	// get list of technologies currently in use
 	technologies := make([]string, 0)
-	for key, _ := range mappings {
+	for key := range mappings {
 		technologies = append(technologies, key)
 	}
 
@@ -137,7 +140,7 @@ func buildLanding() error {
 	tv := TemplateVariables{
 		Technologies: technologies,
 		Mappings:     mappings,
-		Codelabs:    codelabs,
+		Codelabs:     codelabs,
 	}
 	if err := templates.ExecuteTemplate(f, "index", &tv); err != nil {
 		return err
@@ -163,7 +166,7 @@ func getCodelabs() ([]*Codelab, error) {
 		if err := json.Unmarshal(bytes, &codelab); err != nil {
 			return nil, err
 		}
-		codelab.Url = codelabFolder + codelab.Url
+		codelab.URL = "/" + codelabFolder + codelab.URL
 		codelabs = append(codelabs, &codelab)
 	}
 	return codelabs, nil
@@ -176,7 +179,7 @@ func buildGDocs(gdocs []string) error {
 			"export",
 			"-f", "html",
 			"-ga", "UA-88560603-1",
-			"-o", "build/" + codelabFolder,
+			"-o", "build/"+codelabFolder,
 			gdoc)
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
@@ -192,29 +195,28 @@ func buildGDocs(gdocs []string) error {
 }
 
 func compileTemplates(filenames ...string) (*template.Template, error) {
-    m := minify.New()
-    m.AddFunc("text/html", html.Minify)
+	m := minify.New()
+	m.AddFunc("text/html", html.Minify)
 
-    var tmpl *template.Template
-    for _, filename := range filenames {
-        name := filepath.Base(filename)
-        if tmpl == nil {
-            tmpl = template.New(name)
-        } else {
-            tmpl = tmpl.New(name)
-        }
+	var tmpl *template.Template
+	for _, filename := range filenames {
+		name := filepath.Base(filename)
+		if tmpl == nil {
+			tmpl = template.New(name)
+		} else {
+			tmpl = tmpl.New(name)
+		}
 
-        b, err := ioutil.ReadFile(filename)
-        if err != nil {
-            return nil, err
-        }
+		b, err := ioutil.ReadFile(filename)
+		if err != nil {
+			return nil, err
+		}
 
-        mb, err := m.Bytes("text/html", b)
-        if err != nil {
-            return nil, err
-        }
-        tmpl.Parse(string(mb))
-    }
-    return tmpl, nil
+		mb, err := m.Bytes("text/html", b)
+		if err != nil {
+			return nil, err
+		}
+		tmpl.Parse(string(mb))
+	}
+	return tmpl, nil
 }
-

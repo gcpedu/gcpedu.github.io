@@ -9,7 +9,7 @@
     <h2>Learnings</h2>
     <ul class="nav-learning-title">
       {{ range $i, $codelab := .Codelabs }}
-      <li><a href="{{ $codelab.Url }}">{{ $codelab.Title }}</a></li>
+      <li><a href="{{ $codelab.URL }}">{{ $codelab.Title }}</a></li>
       {{ end }}
     </ul>
   </nav>

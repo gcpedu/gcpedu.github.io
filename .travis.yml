@@ -10,20 +10,10 @@ notification:
 env:
   global:
     - CLOUDSDK_CORE_DISABLE_PROMPTS: 1
-    - COMMIT_AUTHOR_EMAIL: education4gcp@gmail.com
-before_install:
-  # Decrypt id_rsa and service_account.json
-  - openssl aes-256-cbc -K $encrypted_18ca7b75201b_key -iv $encrypted_18ca7b75201b_iv
-    -in secrets.tar.enc -out secrets.tar -d
-  - tar xvf secrets.tar
+    - COMMIT_AUTHOR_EMAIL: "education4gcp@gmail.com"
+    - ENCRYPTION_LABEL: "18ca7b75201b"
 
-  # Install gcloud util
-  - curl https://sdk.cloud.google.com | bash
-  - ~/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file=service_account.json
-
-  # Add ssh keys to git client
-  - eval `ssh-agent -s`
-  - ssh-add id_rsa
-
+before_script:
+  - ./lint.sh
 script: ./deploy.sh
 
