@@ -85,6 +85,7 @@ rm -rf out/**/* || exit 0
 doCompile
 cp -R build/* out/
 echo "${SHA}" > out/VERSION
+echo '<!-- VERSION: '${SHA}' -->' >> out/index.html
 
 echo "Updating stored auth creds if we've updated them."
 ~/google-cloud-sdk/bin/gsutil cp ~/.config/claat/goog-cred.json $AUTH_CREDS
