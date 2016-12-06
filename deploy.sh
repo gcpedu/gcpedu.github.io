@@ -73,14 +73,11 @@ SHA=`git rev-parse --verify HEAD`
 # Clone the existing gh-pages for this repo into out/
 git clone $REPO out
 cd out
-
-# open gh-pages-staging, or create a new branch with no history
 git checkout $TARGET_BRANCH
+cd ..
 
 # Clean out existing content
-git rm -r *
-
-cd ..
+rm -rf out/**/* || exit 0
 
 # run our compile script
 doCompile
@@ -107,7 +104,7 @@ fi
 
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
-git add .
+git add --all .
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 
 # Now that we're all set up, we can push.
