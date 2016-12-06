@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "source": "https://docs.google.com/document/d/179X9gjHqv25Gb36nGz04FXsWkVSJBRcb_0_FNEIBTrM/edit?usp=sharing",
+  "format": "html",
+  "prefix": "../../",
+  "mainga": "UA-88560603-1",
+  "updated": "2016-12-06T16:04:15Z",
+  "id": "intro-to-containers",
+  "duration": 0,
+  "title": "Intro to Containers",
+  "author": "bookman@google.com",
+  "summary": "Learn about the tradeoffs of containers vs virtual machines",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "Web"
+  ],
+  "tags": [
+    "gke"
+  ],
+  "feedback": "https://docs.google.com/document/d/179X9gjHqv25Gb36nGz04FXsWkVSJBRcb_0_FNEIBTrM/edit?usp=sharing",
+  "url": "intro-to-containers"
+}
