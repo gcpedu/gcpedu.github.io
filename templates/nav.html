@@ -2,14 +2,14 @@
   <nav>
     <h2>Technologies</h2>
     <ul class="nav-gcp-technology">
-      {{ range $technology, $learnings := .Mappings }}
+      {{ range $technology, $codelabs := .Mappings }}
       <li>{{ $technology }}</li>
       {{ end }}
     </ul>
     <h2>Learnings</h2>
     <ul class="nav-learning-title">
-      {{ range $i, $learning := .Learnings }}
-      <li><a href="{{ $learning.Url }}">{{ $learning.Title }}</a></li>
+      {{ range $i, $codelab := .Codelabs }}
+      <li><a href="{{ $codelab.Url }}">{{ $codelab.Title }}</a></li>
       {{ end }}
     </ul>
   </nav>

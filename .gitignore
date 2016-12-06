@@ -1,3 +1,5 @@
-deploy_key
-service_account.json
 build
+id_rsa
+id_rsa.pub
+secrets.tar
+service_account.json

@@ -1,12 +1,16 @@
 #!/bin/bash
 set -e # Exit with nonzero exit code if anything fails
-SOURCE_BRANCH="master"
-TARGET_BRANCH="gh-pages-staging"
+SOURCE_BRANCH="builder"
+TARGET_BRANCH="staging"
 SERVICE_ACCOUNT="./service_account.json"
 GITHUB_SSH_KEY="./deploy_key"
 AUTH_CREDS="gs://gcpedu-github-secrets/goog-cred.json"
 
 function doCompile {
+  echo "Getting claat tool"
+  go get github.com/googlecodelabs/tools/claat || true
+
+  echo "Getting compile.go's deps"
   go get . || true
   go run compile.go
 }
@@ -32,25 +36,25 @@ SHA=`git rev-parse --verify HEAD`
 
 
 # Clone the existing gh-pages for this repo into out/
-git clone $REPO gh-pages
-cd gh-pages
+git clone $REPO out
+cd out
 
 # open gh-pages-staging, or create a new branch with no history
 git checkout $TARGET_BRANCH
 cd ..
 
 #clean out existing contents
-rm -rf gh-pages/**/* || exit 0
+rm -rf out/**/* || exit 0
 
 # run our compile script
 doCompile
-cp -R build/* gh-pages/
+cp -R build/* out/
 
 echo "Updating stored auth creds if we've updated them."
 ~/google-cloud-sdk/bin/gsutil cp ~/.config/claat/goog-cred.json $AUTH_CREDS
 
 # Now let's go have some fun with the cloned repo
-cd gh-pages
+cd out
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 
