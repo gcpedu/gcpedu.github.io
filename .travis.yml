@@ -2,6 +2,11 @@ language: go
 go:
   - master
 
+notification:
+  email:
+    - gcpedu@google.com
+    - edcation4gcp@gmail.com
+
 env:
   global:
     - CLOUDSDK_CORE_DISABLE_PROMPTS: 1
