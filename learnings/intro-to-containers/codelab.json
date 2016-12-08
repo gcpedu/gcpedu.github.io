@@ -1,25 +1,24 @@
 {
   "environment": "web",
-  "source": "https://docs.google.com/document/d/179X9gjHqv25Gb36nGz04FXsWkVSJBRcb_0_FNEIBTrM/edit?usp=sharing",
+  "source": "https://docs.google.com/document/d/1s6ElhALBm2fISBV_eWklqaG2Ayni8reIcquqwtjJdkU/edit?usp=sharing",
   "format": "html",
   "prefix": "../../",
   "mainga": "UA-88560603-1",
-  "updated": "2016-12-06T18:01:19Z",
+  "updated": "2016-12-08T20:01:32Z",
   "id": "intro-to-containers",
-  "duration": 0,
+  "duration": 33,
   "title": "Intro to Containers",
   "author": "bookman@google.com",
-  "summary": "Learn about the tradeoffs of containers vs virtual machines",
+  "summary": "Learn about docker, google container registry, and the tradeoffs between containers and virtual machines.",
   "theme": "gke",
   "status": [
-    "published"
+    "draft"
   ],
   "category": [
-    "GKE"
+    "GKE",
+    "Appengine Flex"
   ],
-  "tags": [
-    "gke"
-  ],
-  "feedback": "https://docs.google.com/document/d/179X9gjHqv25Gb36nGz04FXsWkVSJBRcb_0_FNEIBTrM/edit?usp=sharing",
+  "tags": [],
+  "feedback": "https://docs.google.com/document/d/1s6ElhALBm2fISBV_eWklqaG2Ayni8reIcquqwtjJdkU/edit?usp=sharing",
   "url": "intro-to-containers"
 }
