@@ -44,7 +44,7 @@
       </google-codelab-step>
     
       <google-codelab-step label="Setup" duration="1">
-        <h3>Create a Project</h3>
+        <h2>Create a Project</h2>
 <p>To make cleanup easier, let&#39;s create a new google cloud project.</p>
 <ul>
 <li>Navigate to <a href="https://console.cloud.google.com/" target="_blank">https://console.cloud.google.com</a>.</li>
@@ -53,12 +53,11 @@
 <li>Give it memorable name like, intro-to-containers</li>
 </ul>
 
-<h3>Launch CloudShell</h3>
+<h2>Launch CloudShell</h2>
 <p>To make cleanup easier, let&#39;s create a new google cloud project.</p>
 <ul>
 <li>Navigate to <a href="https://console.cloud.google.com" target="_blank">https://console.cloud.google.com</a>. </li>
 <li>Click on the project selector dropdown</li>
-<li>Select Create Project</li>
 <li>Give it memorable name like, intro-to-containers</li>
 </ul>
 <p>Now let&#39;s open the cloud shell. The cloud shell icon is at the top right:</p>
@@ -84,7 +83,7 @@
       <google-codelab-step label="Dockerfiles" duration="5">
         <p>Dockerfiles include all the commands on how to build your container.  The Dockerfile will tell Docker how to download dependencies, and build your application. </p>
 <p>Let&#39;s dissect an example dockerfile:</p>
-<h3>Dockerfile</h3>
+<h2>Dockerfile</h2>
 <pre><code>FROM ubuntu:latest
 
 RUN apt-get install openjdk-8-jre
@@ -96,7 +95,7 @@ ENV PORT=8080
 CMD java -jar /server.jar
 
 EXPOSE 8080</code></pre>
-<h3>FROM ubuntu:latest</h3>
+<h2>FROM ubuntu:latest</h2>
 <p>This informs docker that the created image will be based upon the latest ubuntu LTS distribution. The ubuntu docker image will include all the default Ubuntu binaries such-as <code>cp</code>, <code>ls</code>, <code>cat</code>, and <code>apt</code>. Just like a VM you have a freedom to choose the underlying installed binaries.  However the specific linux kernel running is specified by the host running the docker container.</p>
 <p>Many programming languages keep their own base image repository. For example here are some base images for some popular programming languages. These images have the specified runtime pre-installed. Most allow you to specify latest to pull the latest version of the given runtime.</p>
 <ul>
@@ -106,15 +105,15 @@ EXPOSE 8080</code></pre>
 <li><a href="https://hub.docker.com/_/php/" target="_blank">PHP</a>: <code>FROM php:7.0-apache</code></li>
 <li><a href="https://hub.docker.com/_/python/" target="_blank">Python</a>: <code>FROM python:3.5.2</code></li>
 </ul>
-<h3>RUN apt-get install <code>openjdk-8-jre</code></h3>
+<h2>RUN apt-get install <code>openjdk-8-jre</code></h2>
 <p>The RUN instruction allows you to specify commands to be executed when building the image.  You can have as many RUN commands as your heart desires, and they will be executed sequentially.</p>
-<h3>COPY server.jar /server.jar</h3>
+<h2>COPY server.jar /server.jar</h2>
 <p>The COPY instruction allows you to specify files to be copied when building the image. COPY is basically like a <code>cp -R</code> except it&#39;ll copy from your local machine to the docker image. So in this specific case we are copying our local <code>./server.jar</code> to the docker image filesystem at <code>/server.jar</code>.</p>
-<h3>ENV PORT=8080</h3>
+<h2>ENV PORT=8080</h2>
 <p>The ENV instruction specifies custom environment variables to be passed down to running applications. Think of this as a dynamic configuration for the program. For example cloud shell stores it&#39;s related project id in the environment variable <code>DEVSHELL_PROJECT_ID</code>. In your cloud type <code>printenv</code>, and you&#39;ll see a list of current environment variables. </p>
-<h3>CMD java -jar /server.jar</h3>
+<h2>CMD java -jar /server.jar</h2>
 <p>The CMD instruction specifies a <em>default</em> command to be executed when the container is run. Their can only be one CMD instruction. So in this case when our docker image is run a nodejs process running /server.js is started.</p>
-<h3>Expose 8080</h3>
+<h2>Expose 8080</h2>
 <p>The EXPOSE instruction informs the Docker runtime that there is some program listening to port 8080 in this container. This command does not make the exposed ports accessible to the host. To do so requires adding a command line argument when launching the docker container, such-as: </p>
 <p><code>$ docker run -p &lt;external port&gt;:&lt;exposed port&gt; ...</code></p>
 
@@ -122,7 +121,7 @@ EXPOSE 8080</code></pre>
       </google-codelab-step>
     
       <google-codelab-step label="Building an Image" duration="7">
-        <h3>server.js</h3>
+        <h2>server.js</h2>
 <pre><code>&#34;use strict&#34;;
 
 let http = require(&#39;http&#39;);
@@ -150,7 +149,7 @@ Hello World</pre>
 <p>Now let&#39;s kill the nodejs application through the killall command:</p>
 <pre>$ killall node
 [1]+  Terminated              PORT=8000 node server.js</pre>
-<h3>Dockerfile</h3>
+<h2>Dockerfile</h2>
 <pre><code>FROM node:7.2.0
 
 COPY server.js /server.js
@@ -168,7 +167,6 @@ EXPOSE 8080</code></pre>
 <li>Now click your <code>esc</code> key, then type <code>wq</code> followed by <code>enter</code>.</li>
 </ul>
 <p>Since we are using the nodejs runtime we&#39;ll use a pre-packaged image for nodejs applications.</p>
-<h3>Build the imCreating a Project<br><br>To make cleanup easier, let&#39;s create a new google cloud project.<br><br>Navigate to https://console.cloud.google.com.<br>Click on the project selector dropdown<br>Select Create Project<br>Give it memorable name like, intro-to-containers<br>age</h3>
 <p>Copy both the server.js and Dockerfile into a directory in your cloud shell.</p>
 <p>For this step let&#39;s tag the image with the text `hello-node`.</p>
 <pre>$ docker build -t hello-world-node:v1 .</pre>
@@ -222,7 +220,7 @@ $ docker run -i -t -d -p 8084:8080 hello-world-node:v2-alpha</pre>
 <pre>$ docker ps --filter=image=hello-world-node:v1
 CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                    NAMES
 490c7c793dc5        hello-world-node:v1   &#34;/bin/sh -c &#39;node /se&#34;   7 minutes ago       Up 7 minutes        0.0.0.0:8081-&gt;8080/tcp   elated_allen</pre>
-<h3>Getting a container&#39;s stdout</h3>
+<h2>Getting a container&#39;s stdout</h2>
 <p>When viewing a container&#39;s logs we have to reference the container&#39;s id.</p>
 <p>Let&#39;s get one from a running <code>hello-world-node:v1</code> service:</p>
 <pre>$ docker ps --filter=image=hello-world-node:v1 -n=1 -l --format=&#34;{{.ID}}&#34;
@@ -240,7 +238,7 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
 </td><td colspan="1" rowspan="1"><p><img style="max-width: 222.50px" src="img/dcc7501b23f5f562.png"></p>
 </td></tr>
 </table>
-<h3>Tag Naming Scheme</h3>
+<h2>Tag Naming Scheme</h2>
 <p>The GCR service requires uploaded images to have a image tag which adheres to the following format: </p>
 <p><code>&lt;host&gt;/&lt;project id&gt;/&lt;image name&gt;:&lt;version name&gt;</code></p>
 <p><strong>The following hosts are offered:</strong></p>
@@ -251,7 +249,7 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
 <li>gcr.io without a prefix hosts your images in the United States, but this behavior may change in a future release. To home your data in a single specific location, we recommend specifying one of the localized hostnames. Note that gcr.io and us.gcr.io are not interchangeable in your commands.</li>
 <li>b.gcr.io can be used to push to <a href="https://cloud.google.com/container-registry/docs/using-with-google-cloud-platform#using_an_existing_google_cloud_storage_bucket" target="_blank">existing Google Storage buckets</a>.</li>
 </ul>
-<h3>Tagging an Image</h3>
+<h2>Tagging an Image</h2>
 <p>Given the following information, this is how you&#39;d tag your image for GCR. For your own testing please substitute <code>my-awesome-project</code> with your own gcp project id.</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>Host</p>
@@ -269,12 +267,12 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
 <pre>$ docker build -t us.gcr.io/my-awesome-project/hello-world-node:v1 .</pre>
 <p>Or it can be added to an existing image as well</p>
 <pre>$ docker tag hello-world-node:v1 us.gcr.io/my-awesome-project/hello-world-node:v1</pre>
-<h3>Upload an image</h3>
+<h2>Upload an image</h2>
 <p>Above we tagged our image <code>us.gcr.io/my-awesome-project/hello-world-node</code> which where our image will be hosted on the GCR service.</p>
 <p>To upload the image we simply use the <code>gcloud docker --push command</code>:</p>
 <pre>$ gcloud docker --push us.gcr.io/my-awesome-project/hello-world-node:v1</pre>
 <p>You can make images public or change the default ACLs through the <a href="https://cloud.google.com/container-registry/docs/access-control" target="_blank">gsutil</a> utility.</p>
-<h3>Download an image</h3>
+<h2>Download an image</h2>
 <p>Downloading is just like pushing an image. We simply substitute a --pull flag:</p>
 <pre>$ gcloud docker pull -- us.gcr.io/my-awesome-project/hello-world-node:v1</pre>
 
