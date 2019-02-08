@@ -2,7 +2,7 @@
   "environment": "web",
   "source": "https://docs.google.com/document/d/1s6ElhALBm2fISBV_eWklqaG2Ayni8reIcquqwtjJdkU/edit?usp=sharing",
   "format": "html",
-  "prefix": "../../",
+  "prefix": "https://storage.googleapis.com",
   "mainga": "UA-88560603-1",
   "updated": "2017-12-20T16:23:18Z",
   "id": "intro-to-containers",
