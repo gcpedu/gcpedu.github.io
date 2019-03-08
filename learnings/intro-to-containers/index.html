@@ -7,25 +7,26 @@
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
   <title>Intro to Containers</title>
-  <script src="https://storage.googleapis.combower_components/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="https://storage.googleapis.comelements/codelab.html">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
-  <style is="custom-style">
-    body {
-      font-family: "Roboto",sans-serif;
-      background: var(--google-codelab-background, #F8F9FA);
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
     }
   </style>
-  
 </head>
-<body unresolved class="fullbleed">
-
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
   <google-codelab title="Intro to Containers"
                   environment="web"
                   feedback-link="https://docs.google.com/document/d/1s6ElhALBm2fISBV_eWklqaG2Ayni8reIcquqwtjJdkU/edit?usp=sharing">
     
       <google-codelab-step label="Overview" duration="1">
-        <p><img style="max-width: 624.00px" src="img/53995527f6a19657.png"></p>
+        <p><img style="width: 624.00px" src="img/53995527f6a19657.png"></p>
 <p>By the end of this cloud lab you should have a solid grasp on the tradeoffs and differences between Containers and VMs.</p>
 <h2 class="checklist">What you&#39;ll learn</h2>
 <ul class="checklist">
@@ -62,9 +63,9 @@
 <li>Give it memorable name like, intro-to-containers</li>
 </ul>
 <p>Now let&#39;s open the cloud shell. The cloud shell icon is at the top right:</p>
-<p><img style="max-width: 624.00px" src="https://lh6.googleusercontent.com/tCXeQm-SR_AUtK-eFjaS_OQJh-W3_kYnYDCpauyfEZafoKKjEPyyIiduE_or21TmZLjm3byTYecu95Fa4_IVC9bhZy46u_w7ehrxlCDKdtHObXcBQL68Nt4KhLcunksVuV_euc_d"></p>
+<p><img style="width: 624.00px" src="https://lh6.googleusercontent.com/tCXeQm-SR_AUtK-eFjaS_OQJh-W3_kYnYDCpauyfEZafoKKjEPyyIiduE_or21TmZLjm3byTYecu95Fa4_IVC9bhZy46u_w7ehrxlCDKdtHObXcBQL68Nt4KhLcunksVuV_euc_d"></p>
 <p>A cloud shell session will open inside a new frame at the bottom of your browser.</p>
-<p><img style="max-width: 624.00px" src="https://lh3.googleusercontent.com/rTl9b-QmntDngKMp90is2wP-WzFe2eYLgQSZCXQxAqoSAOxjelw_0bGsdR49RSUiLw19akKbjf2yyUNVXP_ra4z_A_BJ5gBPYqPPU07crIgU7LalhBLn6SRjsrg1GOrXpqMsqfbP"></p>
+<p><img style="width: 624.00px" src="https://lh3.googleusercontent.com/rTl9b-QmntDngKMp90is2wP-WzFe2eYLgQSZCXQxAqoSAOxjelw_0bGsdR49RSUiLw19akKbjf2yyUNVXP_ra4z_A_BJ5gBPYqPPU07crIgU7LalhBLn6SRjsrg1GOrXpqMsqfbP"></p>
 
 <p><br>Docker comes pre installed in cloud shell. If you ever want to see what version of docker is currently installed simply run the following command::</p>
 <pre>$ docker --version</pre>
@@ -74,7 +75,7 @@
     
       <google-codelab-step label="Compare &amp; Contrast Containers with VMs" duration="2">
         <p>Containers do not contain the base operating system, just the OS&#39;s libraries. Making a container much more lightweight compared to a VM. Running a container use less disk space and less CPU cycles compared to a VM while still isolating the application. For example the Alpine linux container is only 5MB in size.</p>
-<p><img style="max-width: 624.00px" src="img/532bdf8ab8c78067.png"></p>
+<p><img style="width: 624.00px" src="img/532bdf8ab8c78067.png"></p>
 <p>Containers can easily be based off of other containers.  In this learning we will build a container based off the node:7.2.0 container image. </p>
 <p>Tools such-as docker and kubernetes give a good development to production story. Containers are faster and easier to build, and kubernetes allows you to have an easy way to manage your production services.</p>
 
@@ -224,7 +225,7 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
 <h2>Getting a container&#39;s stdout</h2>
 <p>When viewing a container&#39;s logs we have to reference the container&#39;s id.</p>
 <p>Let&#39;s get one from a running <code>hello-world-node:v1</code> service:</p>
-<pre>$ docker ps --filter=image=hello-world-node:v1 -n=1 -l --format=&#34;{{.ID}}&#34;
+<pre>$ docker ps --filter=image=hello-world-node:v1 -n=1 -l --format=&#34;&#123;&#123;.ID}}&#34;
 490c7c793dc5</pre>
 <p>To print out the logs of container <code>490c7c793dc5</code> we issue:</p>
 <pre>$ docker logs 490c7c793dc5</pre>
@@ -236,7 +237,7 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
         <table>
 <tr><td colspan="1" rowspan="1"><p>Google Container Registry (GCR) stores Docker container images on GCP for fast, scalable retrieval and deployment.  You are only billed for storage and internet egress costs.</p>
 <p>GCR has Access Control List (ACL) support to protect who can access your docker images. By default only members of your GCP project can access a GCR docker image.</p>
-</td><td colspan="1" rowspan="1"><p><img alt="Copy of Container-Registry_512px.png" style="max-width: 222.50px" src="img/dcc7501b23f5f562.png"></p>
+</td><td colspan="1" rowspan="1"><p><img alt="Copy of Container-Registry_512px.png" style="width: 222.50px" src="img/dcc7501b23f5f562.png"></p>
 </td></tr>
 </table>
 <h2>Tag Naming Scheme</h2>
@@ -314,33 +315,10 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
     
   </google-codelab>
 
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-88560603-1', 'auto');
-
-    (function() {
-      var gaCodelab = '';
-      if (gaCodelab) {
-        ga('create', gaCodelab, 'auto', {name: 'codelab'});
-      }
-
-      var gaView;
-      var parts = location.search.substring(1).split('&');
-      for (var i = 0; i < parts.length; i++) {
-        var param = parts[i].split('=');
-        if (param[0] === 'viewga') {
-          gaView = param[1];
-          break;
-        }
-      }
-      if (gaView && gaView !== gaCodelab) {
-        ga('create', gaView, 'auto', {name: 'view'});
-      }
-    })();
-  </script>
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
 
 </body>
 </html>
